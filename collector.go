@@ -20,7 +20,20 @@ func main() {
         }
 }
 
+func getRequestIp(r *http.Request) string {
+        headers := [3]string{"x-forwarded-for", "true-client-iP", "x-real-ip"}
+        for _, header := range headers {
+            ip := r.Header.Get(header)
+            if ip != "" {
+                return ip
+            }
+        }
+        return "<unknown>"
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
+        ip := getRequestIp(r)
+        log.Printf("ip: %s", ip)
         log.Printf("path: %s", html.EscapeString(r.URL.Path))
         fmt.Fprint(w, "Hello World!\n")
 }

@@ -1,5 +1,7 @@
 # k8s Scanner Collector
 
+Script (deployable to k8s) to log requests from vulnerability and exploit scanners.
+
 ## Helpful Commands
 
 ### Build the Docker Container

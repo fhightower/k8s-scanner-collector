@@ -21,6 +21,7 @@ func main() {
 }
 
 func getRequestIp(r *http.Request) string {
+        // these can be lower-cased b/c go converts them to their canonical form: https://github.com/golang/go/blob/2ebe77a2fda1ee9ff6fd9a3e08933ad1ebaea039/src/net/textproto/header.go#L34
         headers := [3]string{"x-forwarded-for", "true-client-iP", "x-real-ip"}
         for _, header := range headers {
             ip := r.Header.Get(header)
